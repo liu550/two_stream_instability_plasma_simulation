@@ -1,4 +1,4 @@
-/*
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,10 +57,6 @@ public class Box : MonoBehaviour
     private double prev_time;
     
 
-
-    void OnMouseDown() {
-        Debug.Log("box clicked");
-    }
 
     void GetLeftAndRightIndexes(ref int left, ref int right, int index) {
         left = index - 1;
@@ -289,96 +285,8 @@ public class Box : MonoBehaviour
         StartCoroutine(Animate());
     }
     
-
 }
-*/
 
 
 
-/*
-if (left > num_of_cells - 2) {
-    left = 0;
-}
-if (left < 0) {
-    left = num_of_cells - 2;
-}
-*/
 
-/*
-void GenerateParticles() 
-{
-    for (int i = 0; i < num_of_particles; i++) {
-        //Initial position
-        Vector3 position = new Vector3(Random.Range(0, 10), 0, 0);
-        Vector3 velocity;
-        if (i % 2 == 0) {
-            velocity = new Vector3(1, 0, 0);
-        }
-        else {
-            velocity = new Vector3(-1, 0, 0);
-        }
-        GameObject particle_object = Instantiate(particle, (position.x, velocity.x, 0), Quaternion.identity);
-        particles.Add(new ParticleInfo(particle_object, position));
-        int index = Math.Floor(position.x);
-        float d = position.x - index;
-        rho[index] += q * (1 - d);
-        rho[index + 1] += q * d;
-    }
-
-    for (int i = 0; i < num_of_cells; i++) {
-        rho[i] /= dx;
-    }
-
-    //background charges???
-
-    //periodic bc???
-    rho[num_of_cells - 1] += rho[0];
-    rho[0] = rho[num_of_cells - 1];
-
-    for (int i = 0; i < num_of_cells; i++) {
-        phi[i] = 0;
-    }
-
-    for (int i = 0; i < solver_iter; i++) {
-        for (int j = 0; j < num_of_cells; j++) {
-            int left, right;
-            GetLeftAndRightIndexes(left, right, j);
-            //gs solver
-            float new_potential = 0.5 * (phi[left] + phi[right] + dx * dx * rho[j] / epsi0);
-            //experiment with new weight!!!
-            phi[j] = phi[j] + 1.4 * (new_potential - phi[j]);
-        }
-
-        if (i % 25 == 0) {
-            float sum = 0;
-            for (int k = 0; k < num_of_cells; k++) {
-                int left, right;
-                GetLeftAndRightIndexes(left, right, k);
-                float res = rho[j] / epsi0 + (phi[left] + phi[right] - 2 * phi[k]) / (dx * dx);
-                sum += res * res;
-            }
-            if (sum < res_tolerance) {
-                break;
-            }
-        }
-    }
-
-    //calculate e fields and acceleration
-    for (int i = 0; i < num_of_particles; i++) {
-        ParticleInfo temp = particles[i];
-        int left = Math.Floor(temp.position.x);
-        float E = (phi[i] + phi[i + 1]) / (2 * dx);
-        float acceleration = E * q / m;
-        Vector3 velocity = new Vector3(temp.velocity.x + acceleration, 0, 0);
-        Vector3 position = new Vector3(temp.position.x + acceleration)
-        temp.UpdatePosition(position);
-        temp.UpdateVelocity(velocity);
-        //xv->xy   
-        GameObject temp_object = temp.particle;
-        temp_object.transform.position = (position.x, velocity.x, 0);
-    }
-
-
-
-}
-*/
